@@ -298,6 +298,137 @@ const testCases = [
             error: 0,
         },
     },
+    // New test cases for Dart
+    {
+        name: 'dart : hello world',
+        reqObject: {
+            language: 'dart',
+            script: 'void main() {\n  print(\'hello world\');\n}',
+        },
+        expectedResponse: {
+            val: 'hello world\n',
+            status: 200,
+            error: 0,
+        },
+    },
+    {
+        name: 'dart : print stdin',
+        reqObject: {
+            language: 'dart',
+            script:
+                'import \'dart:io\';\n' +
+                'void main() {\n' +
+                '  String input = stdin.readLineSync();\n' +
+                '  print(input);\n' +
+                '}',
+            stdin: '1 2 3',
+        },
+        expectedResponse: {
+            val: '1 2 3\n',
+            status: 200,
+            error: 0,
+        },
+    },
+    // New test cases for React Native
+    {
+        name: 'react-native : hello world',
+        reqObject: {
+            language: 'react-native',
+            script:
+                'import React from \'react\';\n' +
+                'import { Text, View } from \'react-native\';\n' +
+                'export default function App() {\n' +
+                '  return (\n' +
+                '    <View>\n' +
+                '      <Text>hello world</Text>\n' +
+                '    </View>\n' +
+                '  );\n' +
+                '}',
+        },
+        expectedResponse: {
+            val: '<View>\n  <Text>hello world</Text>\n</View>',
+            status: 200,
+            error: 0,
+        },
+    },
+    {
+        name: 'react-native : dynamic text',
+        reqObject: {
+            language: 'react-native',
+            script:
+                'import React, { useState } from \'react\';\n' +
+                'import { Text, View, Button } from \'react-native\';\n' +
+                'export default function App() {\n' +
+                '  const [text, setText] = useState(\'\');\n' +
+                '  return (\n' +
+                '    <View>\n' +
+                '      <Text>{text}</Text>\n' +
+                '      <Button\n' +
+                '        title="Press me"\n' +
+                '        onPress={() => setText(\'hello world\')}\n' +
+                '      />\n' +
+                '    </View>\n' +
+                '  );\n' +
+                '}',
+        },
+        expectedResponse: {
+            val: '<View>\n  <Text></Text>\n  <Button title="Press me" onPress={[Function onPress]} />\n</View>',
+            status: 200,
+            error: 0,
+        },
+    },
+    //test cases for csharp
+    {
+        name: 'csharp : hello world',
+        reqObject: {
+            language: 'csharp',
+            script:
+                'using System;\n' +
+                'namespace HelloWorld\n' +
+                '{\n' +
+                '    class Program\n' +
+                '    {\n' +
+                '        static void Main(string[] args)\n' +
+                '        {\n' +
+                '            Console.WriteLine("hello world");\n' +
+                '        }\n' +
+                '    }\n' +
+                '}',
+        },
+        expectedResponse: {
+            val: 'hello world\n',
+            status: 200,
+            error: 0,
+        },
+    },
+    {
+        name: 'csharp : print stdin',
+        reqObject: {
+            language: 'csharp',
+            script:
+                'using System;\n' +
+                'namespace HelloWorld\n' +
+                '{\n' +
+                '    class Program\n' +
+                '    {\n' +
+                '        static void Main(string[] args)\n' +
+                '        {\n' +
+                '            string input;\n' +
+                '            while ((input = Console.ReadLine()) != null)\n' +
+                '            {\n' +
+                '                Console.WriteLine(input);\n' +
+                '            }\n' +
+                '        }\n' +
+                '    }\n' +
+                '}',
+            stdin: '1 2 3',
+        },
+        expectedResponse: {
+            val: '1\n2\n3\n',
+            status: 200,
+            error: 0,
+        },
+    },
 ]
 
 module.exports = { testCases }
